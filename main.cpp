@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void main()
+int main()
 {
 	// Initialze winsock
 	WSADATA wsData;
@@ -17,7 +17,7 @@ void main()
 	if (wsOk != 0)
 	{
 		cerr << "Can't Initialize winsock! Quitting" << endl;
-		return;
+		return 0;
 	}
 	
 	// Create a socket
@@ -25,7 +25,7 @@ void main()
 	if (listening == INVALID_SOCKET)
 	{
 		cerr << "Can't create a socket! Quitting" << endl;
-		return;
+		return 0;
 	}
 
 	// Bind the ip address and port to a socket
@@ -59,7 +59,7 @@ void main()
 
 		// E.g. You have a server and it's master file descriptor set contains 5 items;
 		// the listening socket and four clients. When you pass this set into select(), 
-		// only the sockets that are interacting with the server are returned. Let's say
+		// only the sockets that are interacting with the server are return 0ed. Let's say
 		// only one client is sending a message at that time. The contents of 'copy' will
 		// be one socket. You will have LOST all the other sockets.
 
@@ -163,4 +163,5 @@ void main()
 	WSACleanup();
 
 	system("pause");
+	return 0;
 }
